@@ -2,20 +2,20 @@
  * @Author: liziwei01
  * @Date: 2023-05-09 23:00:57
  * @LastEditors: liziwei01
- * @LastEditTime: 2023-05-11 02:53:31
+ * @LastEditTime: 2023-05-11 19:43:30
  * @Description: file content
  */
 package controllers
 
 import (
+	"path/filepath"
+
+	"github.com/liziwei01/gin-lib/library/env"
 	"github.com/liziwei01/gin-lib/library/response"
+	"github.com/liziwei01/gin-monitor-appui/modules/download/constants"
 	downloadModel "github.com/liziwei01/gin-monitor-appui/modules/download/model"
 
 	"github.com/gin-gonic/gin"
-)
-
-const (
-	location = "data"
 )
 
 func Stream(ctx *gin.Context) {
@@ -25,14 +25,7 @@ func Stream(ctx *gin.Context) {
 		return
 	}
 
-	if len(inputs.Path) == 0 {
-		inputs.Path = "/"
-	} else if inputs.Path[0] != '/' {
-		inputs.Path = "/" + inputs.Path
-	}
-
-	absPath := location + inputs.Path
-	ctx.File(absPath)
+	ctx.File(filepath.Join(env.Default.RootDir(), constants.DATA_LOCATION, inputs.Path))
 }
 
 func getStreamPars(ctx *gin.Context) (downloadModel.StreamPars, bool) {

@@ -2,7 +2,7 @@
  * @Author: liziwei01
  * @Date: 2022-04-12 10:45:14
  * @LastEditors: liziwei01
- * @LastEditTime: 2023-05-11 01:00:27
+ * @LastEditTime: 2023-05-11 19:30:20
  * @Description: file content
  */
 package routers
@@ -23,9 +23,6 @@ func Init(router *gin.RouterGroup) {
 	// apiGroup.Use(middleware.CheckLoginMiddleware())
 	{
 		downloadGroup.GET("/stream", downloadController.Stream)
+		downloadGroup.GET("/page", downloadController.Page)
 	}
-	// pageGroup := router.Group("/page")
-	// {
-	// 	pageGroup.GET("/", downloadController.StreamLocal)
-	// }
 }

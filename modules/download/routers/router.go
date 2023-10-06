@@ -2,7 +2,7 @@
  * @Author: liziwei01
  * @Date: 2022-04-12 10:45:14
  * @LastEditors: liziwei01
- * @LastEditTime: 2023-05-11 19:30:20
+ * @LastEditTime: 2023-10-05 00:36:31
  * @Description: file content
  */
 package routers
@@ -24,5 +24,6 @@ func Init(router *gin.RouterGroup) {
 	{
 		downloadGroup.GET("/stream", downloadController.Stream)
 		downloadGroup.GET("/page", downloadController.Page)
+		downloadGroup.POST("/upload", downloadController.Upload)
 	}
 }

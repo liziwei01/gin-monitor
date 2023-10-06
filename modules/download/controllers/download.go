@@ -2,7 +2,7 @@
  * @Author: liziwei01
  * @Date: 2023-05-09 23:00:57
  * @LastEditors: liziwei01
- * @LastEditTime: 2023-05-11 19:43:30
+ * @LastEditTime: 2023-10-05 02:10:09
  * @Description: file content
  */
 package controllers
@@ -25,7 +25,9 @@ func Stream(ctx *gin.Context) {
 		return
 	}
 
-	ctx.File(filepath.Join(env.Default.RootDir(), constants.DATA_LOCATION, inputs.Path))
+	absPath := filepath.Join(env.Default.RootDir(), constants.DATA_LOCATION, inputs.Path)
+	rlvPath := filepath.Base(absPath)
+	ctx.FileAttachment(absPath, rlvPath)
 }
 
 func getStreamPars(ctx *gin.Context) (downloadModel.StreamPars, bool) {
